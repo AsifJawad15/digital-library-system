@@ -15,4 +15,21 @@ public class EBookProxy implements EBook {
         }
         realEBook.display();
     }
+    
+    @Override
+    public String getTitle() {
+        if (realEBook == null) {
+            return filename.replace(".pdf", "");
+        }
+        return realEBook.getTitle();
+    }
+    
+    @Override
+    public int getSize() {
+        if (realEBook == null) {
+            System.out.println("Loading to get size: " + filename);
+            realEBook = new RealEBook(filename);
+        }
+        return realEBook.getSize();
+    }
 }
